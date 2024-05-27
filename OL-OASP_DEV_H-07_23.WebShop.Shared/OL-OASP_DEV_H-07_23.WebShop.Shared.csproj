@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>OL_OASP_DEV_H_07_23.WebShop.Shared</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\Binding\" />
+    <Folder Include="Models\Dto\" />
+    <Folder Include="Models\ViewModel\" />
+  </ItemGroup>
+
+</Project>
