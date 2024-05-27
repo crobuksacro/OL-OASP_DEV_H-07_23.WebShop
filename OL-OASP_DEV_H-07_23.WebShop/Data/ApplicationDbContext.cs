@@ -7,6 +7,9 @@ using OL_OASP_DEV_H_07_23.WebShop.Shared.Interfaces;
 
 namespace OL_OASP_DEV_H_07_23.WebShop.Data
 {
+    /// <summary>
+    /// Application db context
+    /// </summary>
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole, string>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
