@@ -50,8 +50,6 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
             return mapper.Map<ProductItemViewModel>(dbo);
 
         }
-
-
         /// <summary>
         /// Delte product item
         /// </summary>
@@ -67,7 +65,6 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
             return mapper.Map<ProductItemViewModel>(dbo);
 
         }
-
         /// <summary>
         /// Update product item
         /// </summary>
@@ -105,7 +102,6 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
             await db.SaveChangesAsync();
             return mapper.Map<ProductCategoryViewModel>(dbo);
         }
-
         /// <summary>
         /// Delete Product Category
         /// </summary>
@@ -119,7 +115,6 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
             return mapper.Map<ProductCategoryViewModel>(dbo);
 
         }
-
         /// <summary>
         /// Add product Categories by paggination
         /// </summary>
@@ -177,7 +172,6 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
 
             return response;
         }
-
         /// <summary>
         /// Add new product category
         /// </summary>
