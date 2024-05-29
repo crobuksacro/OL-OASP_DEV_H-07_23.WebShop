@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.Common;
+using OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.CompanyModels;
 using OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.ProductModels;
 using OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.UserModel;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Interfaces;
@@ -20,6 +21,41 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Data
 
         public ApplicationDbContext()
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+
+            modelBuilder.Entity<Address>().HasData(
+                    new Address
+                    {
+                        Id = 1,
+                        City = "Zagreb",
+                        Created = new DateTime(2024, 5, 22),
+                        Country = "Hrvatska",
+                        Street = "Maksimirska",
+                        Number = "100",
+                        Valid = true
+                    }
+            );
+
+
+
+            modelBuilder.Entity<Company>().HasData(
+                new Company
+                {
+                    Id = 1,
+                    Created = new DateTime(2024, 5, 22),
+                    AddressId = 1,
+                    FullName = "Tvrtka d.o.o.",
+                    ShortName = "Tvrtka",
+                    VAT = "71834573974",
+                    Valid = true
+                }
+            );
+
+            base.OnModelCreating(modelBuilder);
         }
 
 
@@ -88,7 +124,9 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Data
         public DbSet<ProductCategory> ProductCategorys { get; set; }
         public DbSet<ProductItem> ProductItems { get; set; }
         #endregion
-
+        #region CompanyModels
+        public DbSet<Company> Companys { get; set; }
+        #endregion
         #region Common
         public DbSet<Address> Addresss { get; set; }
         #endregion

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OL_OASP_DEV_H_07_23.WebShop.Data;
 
@@ -11,9 +12,11 @@ using OL_OASP_DEV_H_07_23.WebShop.Data;
 namespace OL_OASP_DEV_H_07_23.WebShop.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240529163325_companyMigration")]
+    partial class companyMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -195,19 +198,6 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Addresss");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            City = "Zagreb",
-                            Country = "Hrvatska",
-                            Created = new DateTime(2024, 5, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Number = "100",
-                            Street = "Maksimirska",
-                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Valid = true
-                        });
                 });
 
             modelBuilder.Entity("OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.CompanyModels.Company", b =>
@@ -247,19 +237,6 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Data.Migrations
                     b.HasIndex("AddressId");
 
                     b.ToTable("Companys");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            AddressId = 1L,
-                            Created = new DateTime(2024, 5, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FullName = "Tvrtka d.o.o.",
-                            ShortName = "Tvrtka",
-                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            VAT = "71834573974",
-                            Valid = true
-                        });
                 });
 
             modelBuilder.Entity("OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.ProductModels.ProductCategory", b =>
