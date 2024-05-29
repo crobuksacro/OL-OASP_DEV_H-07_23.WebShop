@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OL_OASP_DEV_H_07_23.WebShop.Data;
 using OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.UserModel;
+using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Dto;
 
 namespace OL_OASP_DEV_H_07_23.WebShop
 {
@@ -13,7 +14,10 @@ namespace OL_OASP_DEV_H_07_23.WebShop
 
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            
+
+            builder.Services.Configure<AppSettings>(builder.Configuration);
+
+
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
             

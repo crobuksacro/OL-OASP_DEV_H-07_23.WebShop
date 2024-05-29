@@ -194,7 +194,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Addresss");
+                    b.ToTable("Addresss", (string)null);
 
                     b.HasData(
                         new
@@ -246,7 +246,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Data.Migrations
 
                     b.HasIndex("AddressId");
 
-                    b.ToTable("Companys");
+                    b.ToTable("Companys", (string)null);
 
                     b.HasData(
                         new
@@ -294,7 +294,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Data.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("ProductCategorys");
+                    b.ToTable("ProductCategorys", (string)null);
                 });
 
             modelBuilder.Entity("OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.ProductModels.ProductItem", b =>
@@ -341,7 +341,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Data.Migrations
 
                     b.HasIndex("QuantityTypeId");
 
-                    b.ToTable("ProductItems");
+                    b.ToTable("ProductItems", (string)null);
                 });
 
             modelBuilder.Entity("OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.ProductModels.QuantityType", b =>
@@ -370,7 +370,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("QuantityTypes");
+                    b.ToTable("QuantityTypes", (string)null);
 
                     b.HasData(
                         new

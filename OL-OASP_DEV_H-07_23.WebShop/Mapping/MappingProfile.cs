@@ -9,9 +9,16 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Mapping
     {
         public MappingProfile()
         {
+            CreateMap<ProductCategoryViewModel, ProductCategoryUpdateBinding>();
+            CreateMap<ProductCategory, ProductCategoryViewModel>();
+            CreateMap<ProductCategoryBinding, ProductCategory>();
+            CreateMap<ProductCategoryUpdateBinding, ProductCategory>();
             CreateMap<ProductItem, ProductItemViewModel>();
             CreateMap<ProductItemBinding, ProductItem>();
             CreateMap<ProductItemUpdateBinding, ProductItem>();
+            CreateMap<QuantityType, QuantityTypeViewModel>();
+            //CreateMap<Company, CompanyViewModel>();
+
         }
     }
 }

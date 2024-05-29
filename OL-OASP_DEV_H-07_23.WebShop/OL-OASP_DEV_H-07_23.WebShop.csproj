@@ -21,8 +21,4 @@
     <ProjectReference Include="..\OL-OASP_DEV_H-07_23.WebShop.Shared\OL-OASP_DEV_H-07_23.WebShop.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\Interfaces\" />
-  </ItemGroup>
-
 </Project>
