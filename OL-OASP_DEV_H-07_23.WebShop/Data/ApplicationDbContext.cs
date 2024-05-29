@@ -27,6 +27,59 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Data
         {
 
 
+                        modelBuilder.Entity<QuantityType>().HasData(
+                new QuantityType
+                {
+                    Id = 1,
+                    Name = "Dan",
+                    Created = new DateTime(2024, 5, 22),
+                    Valid = true
+                },
+                new QuantityType
+                {
+                    Id = 2,
+                    Name = "Mjesec",
+                    Created = new DateTime(2024, 5, 22),
+                    Valid = true
+                },
+                new QuantityType
+                {
+                    Id = 3,
+                    Name = "Godina",
+                    Created = new DateTime(2024, 5, 22),
+                    Valid = true
+                },
+                new QuantityType
+                {
+                    Id = 4,
+                    Name = "Kg",
+                    Created = new DateTime(2024, 5, 22),
+                    Valid = true
+                },
+                new QuantityType
+                {
+                    Id = 5,
+                    Name = "Litra",
+                    Created = new DateTime(2024, 5, 22),
+                    Valid = true
+                },
+                new QuantityType
+                {
+                    Id = 6,
+                    Name = "Dg",
+                    Created = new DateTime(2024, 5, 22),
+                    Valid = true
+                },
+                new QuantityType
+                {
+                    Id = 7,
+                    Name = "Komad",
+                    Created = new DateTime(2024, 5, 22),
+                    Valid = true
+                }
+            );
+
+
             modelBuilder.Entity<Address>().HasData(
                     new Address
                     {
@@ -123,7 +176,9 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Data
         #region ProductModels
         public DbSet<ProductCategory> ProductCategorys { get; set; }
         public DbSet<ProductItem> ProductItems { get; set; }
+        public DbSet<QuantityType> QuantityTypes { get; set; }
         #endregion
+
         #region CompanyModels
         public DbSet<Company> Companys { get; set; }
         #endregion

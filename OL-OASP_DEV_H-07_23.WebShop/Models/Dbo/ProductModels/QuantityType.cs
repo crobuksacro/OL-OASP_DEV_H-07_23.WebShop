@@ -4,17 +4,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.ProductModels
 {
-    public class ProductItem: ProductItemBase, IBaseTableAtributes
+    public class QuantityType : QuantityTypeBase, IBaseTableAtributes
     {
         [Key]
         public long Id { get; set; }
         public DateTime Created { get; set; }
         public DateTime Updated { get; set; }
         public bool Valid { get; set; }
-
-        public ProductCategory? ProductCategory { get; set; }
-        public long? ProductCategoryId { get; set; }
-        public QuantityType? QuantityType { get; set; }
-        public long? QuantityTypeId { get; set; }
     }
 }

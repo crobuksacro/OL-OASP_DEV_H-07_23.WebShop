@@ -7,10 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\Binding\" />
-    <Folder Include="Models\Dto\" />
-    <Folder Include="Models\ViewModel\" />
-  </ItemGroup>
-
 </Project>

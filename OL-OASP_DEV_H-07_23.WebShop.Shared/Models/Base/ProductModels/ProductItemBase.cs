@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Dto;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Base.ProductModels
@@ -17,6 +18,8 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Base.ProductModels
         [Required]
         [Column(TypeName = "decimal(9,2)")]
         public decimal Quantity { get; set; }
+
+        
 
     }
 }
