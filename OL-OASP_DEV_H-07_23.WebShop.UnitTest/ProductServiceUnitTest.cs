@@ -1,4 +1,4 @@
-﻿using OL_OASP_DEV_H_07_23.WebShop.Services.Implementations;
+﻿using OL_OASP_DEV_H_07_23.WebShop.Services.Interfaces;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.ProductModels;
 
 namespace OL_OASP_DEV_H_07_23.WebShop.UnitTest

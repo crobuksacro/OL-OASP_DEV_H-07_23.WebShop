@@ -1,7 +1,7 @@
 ﻿using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.ProductModels;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.ViewModel.ProductModels;
 
-namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
+namespace OL_OASP_DEV_H_07_23.WebShop.Services.Interfaces
 {
     public interface IProductService
     {
@@ -27,5 +27,10 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
         /// <param name="id"></param>
         /// <returns></returns>
          Task<T> GetProductCategory<T>(long id);
+        /// <summary>
+        /// Gets all Quantity Types for product
+        /// </summary>
+        /// <returns></returns>
+       Task<List<QuantityTypeViewModel>> GetQuantityTypes();
     }
 }

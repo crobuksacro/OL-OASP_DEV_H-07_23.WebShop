@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using OL_OASP_DEV_H_07_23.WebShop.Services.Implementations;
+using OL_OASP_DEV_H_07_23.WebShop.Services.Interfaces;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.ProductModels;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Dto;
 
@@ -59,6 +59,25 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Controllers
         {
             var productCategory = await productService.GetProductCategory(id);
             return View(productCategory);
+        }
+
+        public async Task<IActionResult> AddProductItem(long categoryId)
+        {
+            var model = new ProductItemBinding
+            {
+                ProductCategoryId = categoryId
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddProductItem(ProductItemBinding model)
+        {
+
+            await productService.AddProductItem(model);
+
+            return RedirectToAction("Details", new { id = model.ProductCategoryId });
         }
     }
 }

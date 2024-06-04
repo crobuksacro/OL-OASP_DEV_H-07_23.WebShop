@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using OL_OASP_DEV_H_07_23.WebShop.Data;
 using OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.ProductModels;
+using OL_OASP_DEV_H_07_23.WebShop.Services.Interfaces;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.ProductModels;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Dto;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.ViewModel.ProductModels;
@@ -24,7 +25,21 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
             this.mapper = mapper;
             this.appSettings = appSettings.Value;
         }
+        /// <summary>
+        /// Gets all Quantity Types for product
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<QuantityTypeViewModel>> GetQuantityTypes()
+        {
+            var dbos = await db.QuantityTypes.Where(y => y.Valid).ToListAsync();
+            if (!dbos.Any())
+            {
+                return new List<QuantityTypeViewModel>();
+            }
 
+            return dbos.Select(y => mapper.Map<QuantityTypeViewModel>(y)).ToList();
+
+        }
         /// <summary>
         /// Add product item
         /// </summary>

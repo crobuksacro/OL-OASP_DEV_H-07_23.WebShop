@@ -1,0 +1,77 @@
+﻿@model OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.ProductModels.ProductItemBinding
+@using OL_OASP_DEV_H_07_23.WebShop.Services.Interfaces
+@inject IProductService productService
+
+@{
+    ViewData["Title"] = "AddProductItem";
+    var quantityTypes = await productService.GetQuantityTypes();
+}
+
+<h4>Dodavanje stavki</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddProductItem">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProductCategoryId" class="control-label"></label>
+                <input asp-for="ProductCategoryId" readonly class="form-control" />
+                <span asp-validation-for="ProductCategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quantity" class="control-label"></label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+
+
+
+                <label asp-for="QuantityTypeId" class="control-label"></label>
+
+
+
+                <select name="QuantityTypeId" class="form-select">
+
+                    <optgroup title="Mjerna jedinica">
+
+                        @foreach (var item in quantityTypes)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </optgroup>
+                </select>
+
+                <span asp-validation-for="QuantityTypeId" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
