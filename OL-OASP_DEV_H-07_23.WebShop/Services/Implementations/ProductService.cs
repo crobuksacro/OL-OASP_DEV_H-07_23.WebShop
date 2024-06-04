@@ -177,7 +177,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<ProductCategoryViewModel> AddCategoryProductItem(ProductCategoryBinding model)
+        public async Task<ProductCategoryViewModel> AddProductCategory(ProductCategoryBinding model)
         {
             var company = await db.Companys.FirstOrDefaultAsync(y => y.Valid);
             var dbo = mapper.Map<ProductCategory>(model);
@@ -186,7 +186,21 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
             await db.SaveChangesAsync();
             return mapper.Map<ProductCategoryViewModel>(dbo);
         }
+        /// <summary>
+        /// Get Product category by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<ProductCategoryViewModel> GetProductCategory(long id)
+        {
+            var dbo = await db.ProductCategorys
+                .Include(y => y.ProductItems)
+                .FirstOrDefaultAsync(y => y.Id == id);
 
+            dbo.ProductItems = dbo.ProductItems.Where(y => y.Valid).ToList();
 
+            return mapper.Map<ProductCategoryViewModel>(dbo);
+
+        }
     }
 }

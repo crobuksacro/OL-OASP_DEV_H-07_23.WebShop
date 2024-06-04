@@ -5,7 +5,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
 {
     public interface IProductService
     {
-        Task<ProductCategoryViewModel> AddCategoryProductItem(ProductCategoryBinding model);
+        Task<ProductCategoryViewModel> AddProductCategory(ProductCategoryBinding model);
         Task<ProductItemViewModel> AddProductItem(ProductItemBinding model);
         Task<ProductCategoryViewModel> DeleteProductCategory(long id);
         Task<ProductItemViewModel> DeleteProductItem(long id);
@@ -14,5 +14,11 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
         Task<ProductItemViewModel> GetProductItem(long id);
         Task<ProductCategoryViewModel> UpdateProductCategory(ProductCategoryUpdateBinding model);
         Task<ProductItemViewModel> UpdateProductItem(ProductItemUpdateBinding model);
+        /// <summary>
+        /// Get Product category by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<ProductCategoryViewModel> GetProductCategory(long id);
     }
 }
