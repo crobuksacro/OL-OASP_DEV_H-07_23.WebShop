@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using OL_OASP_DEV_H_07_23.WebShop.Data;
@@ -219,5 +220,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
             return mapper.Map<T>(dbo);
 
         }
+
+
     }
 }

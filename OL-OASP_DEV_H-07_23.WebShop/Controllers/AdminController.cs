@@ -48,5 +48,17 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Controllers
             await productService.UpdateProductCategory(model);
             return RedirectToAction("Index");
         }
+
+        public async Task<IActionResult> Delete(long id)
+        {
+            await productService.DeleteProductCategory(id);
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Details(long id)
+        {
+            var productCategory = await productService.GetProductCategory(id);
+            return View(productCategory);
+        }
     }
 }

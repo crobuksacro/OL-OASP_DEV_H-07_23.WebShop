@@ -1,0 +1,71 @@
+﻿@model OL_OASP_DEV_H_07_23.WebShop.Shared.Models.ViewModel.ProductModels.ProductCategoryViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row">
+    <div class="col-4">
+        <h4>Detalji</h4>
+        <hr />
+        <dl class="row">
+            <dd class="col-sm-12">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dd class="col-sm-12">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+        </dl>
+        <div>
+            @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+    <div class="col-8">
+
+
+        @Html.ActionLink("Dodaj novu stavku", "AddProductItem", new { categoryId = Model.Id })
+
+
+
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Naziv</th>
+                    <th scope="col">Opis</th>
+                    <th scope="col">Cijena</th>
+                    <th scope="col">Količina</th>
+                    <th scope="col">Uredi</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model.ProductItems)
+                {
+                    <tr>
+                        <th scope="row">@item.Id</th>
+                        <td>@item.Name</td>
+                        <td>@item.Description</td>
+                        <td>@item.Price</td>
+                        <td>@item.Quantity</td>
+                        <td>
+                            @Html.ActionLink("Edit", "EditProductItem", new { id = item.Id }) |
+                            @Html.ActionLink("Details", "DetailsProductItem", new { id = item.Id }) |
+                            @Html.ActionLink("Delete", "DeleteProductItem", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+
+
+
+            </tbody>
+        </table>
+
+
+
+
+    </div>
+
+</div>
