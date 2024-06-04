@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OL_OASP_DEV_H_07_23.WebShop.Data;
+using OL_OASP_DEV_H_07_23.WebShop.Mapping;
 using OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.UserModel;
 using OL_OASP_DEV_H_07_23.WebShop.Services.Implementations;
 using OL_OASP_DEV_H_07_23.WebShop.Services.Interfaces;
@@ -24,6 +25,8 @@ namespace OL_OASP_DEV_H_07_23.WebShop
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
             builder.Services.AddSingleton<IIdentitySetup, IdentitySetup>();
             builder.Services.AddScoped<IProductService, ProductService>();
+
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
 
             builder.Services.AddDefaultIdentity<ApplicationUser>(
                 options => {
@@ -70,7 +73,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Admin}/{action=Index}/{id?}");
             app.MapRazorPages();
             var identitySetup = app.Services.GetRequiredService<IIdentitySetup>();
 

@@ -15,10 +15,10 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Controllers
         {
             this.productService = productService;
         }
-      
-        public IActionResult Index()
+
+        public async Task<IActionResult> Index()
         {
-            var categorys = productService.GetProductCategories();
+            var categorys = await productService.GetProductCategories();
             return View(categorys);
         }
 
