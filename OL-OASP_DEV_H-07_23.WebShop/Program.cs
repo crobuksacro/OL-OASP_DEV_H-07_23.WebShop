@@ -23,7 +23,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop
             
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
             builder.Services.AddSingleton<IIdentitySetup, IdentitySetup>();
-
+            builder.Services.AddScoped<IProductService, ProductService>();
 
             builder.Services.AddDefaultIdentity<ApplicationUser>(
                 options => {
