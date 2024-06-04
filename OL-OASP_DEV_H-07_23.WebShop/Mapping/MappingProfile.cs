@@ -11,6 +11,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Mapping
         {
             CreateMap<ProductCategoryViewModel, ProductCategoryUpdateBinding>();
             CreateMap<ProductCategory, ProductCategoryViewModel>();
+            CreateMap<ProductCategory, ProductCategoryUpdateBinding>();
             CreateMap<ProductCategoryBinding, ProductCategory>();
             CreateMap<ProductCategoryUpdateBinding, ProductCategory>();
             CreateMap<ProductItem, ProductItemViewModel>();

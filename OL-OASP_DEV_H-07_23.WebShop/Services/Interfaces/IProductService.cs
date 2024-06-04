@@ -20,5 +20,12 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
         /// <param name="id"></param>
         /// <returns></returns>
         Task<ProductCategoryViewModel> GetProductCategory(long id);
+        /// <summary>
+        /// Get product category with id
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="id"></param>
+        /// <returns></returns>
+         Task<T> GetProductCategory<T>(long id);
     }
 }
