@@ -74,6 +74,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
         public async Task<ProductItemViewModel> DeleteProductItem(long id)
         {
             var dbo = await db.ProductItems
+                .Include(y=>y.ProductCategory)
                 .FirstOrDefaultAsync(y => y.Id == id);
 
             dbo.Valid = false;

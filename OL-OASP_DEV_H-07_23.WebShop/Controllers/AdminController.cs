@@ -79,5 +79,11 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Controllers
 
             return RedirectToAction("Details", new { id = model.ProductCategoryId });
         }
+
+        public async Task<IActionResult> DeleteProductItem(long id)
+        {
+           var response =  await productService.DeleteProductItem(id);
+            return RedirectToAction("Details", new { id = response.ProductCategoryId });
+        }
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.Common;
 using OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.CompanyModels;
+using OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.OrderModels;
 using OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.ProductModels;
 using OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.UserModel;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Interfaces;
@@ -184,6 +185,10 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Data
         #endregion
         #region Common
         public DbSet<Address> Addresss { get; set; }
+        #endregion
+        #region Order
+        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<Order> Orders { get; set; }
         #endregion
     }
 }
