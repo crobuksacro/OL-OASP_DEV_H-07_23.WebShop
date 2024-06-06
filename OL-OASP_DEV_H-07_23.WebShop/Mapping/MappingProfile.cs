@@ -1,7 +1,15 @@
 ﻿using AutoMapper;
+using OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.Common;
+using OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.OrderModels;
 using OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.ProductModels;
+using OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.UserModel;
+using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.Common;
+using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.OrderModels;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.ProductModels;
+using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.ViewModel.Common;
+using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.ViewModel.OrderModels;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.ViewModel.ProductModels;
+using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.ViewModel.UserModel;
 
 namespace OL_OASP_DEV_H_07_23.WebShop.Mapping
 {
@@ -20,6 +28,17 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Mapping
             CreateMap<QuantityType, QuantityTypeViewModel>();
             //CreateMap<Company, CompanyViewModel>();
 
+            CreateMap<Address, AddressViewModel>();
+            CreateMap<Address, AddressUpdateBinding>();
+
+            CreateMap<ApplicationUser, ApplicationUserViewModel>();
+
+            CreateMap<OrderUpdateBinding, Order>();
+            CreateMap<OrderBinding, Order>();
+            CreateMap<Order, OrderViewModel>();
+            CreateMap<OrderItemBinding, OrderItem>();
+            CreateMap<OrderItemUpdateBiding, OrderItem>();
+            CreateMap<OrderItem, OrderItemViewModel>();
         }
     }
 }
