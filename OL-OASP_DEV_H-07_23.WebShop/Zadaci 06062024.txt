@@ -7,3 +7,6 @@ Napraviti metodu za dohvat svih narudzbi
 Dohvat narudzbi po korisniku
 Storniranje narudzbe
 Azuriranje narzdzbe
+
+Zadatak 2
+Napraviti unit test za BuyerService
