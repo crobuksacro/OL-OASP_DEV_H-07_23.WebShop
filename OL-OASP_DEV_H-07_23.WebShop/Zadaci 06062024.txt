@@ -1,0 +1,7 @@
+﻿Zadatak 1
+
+Napraviti novi servis BuyerService koji će imati metodu za kupnju proizvoda (narudzba). 
+Napraviti metodu za dohvat svih narudzbi
+Dohvat narudzbi po korisniku
+Storniranje narudzbe
+Azuriranje narzdzbe
