@@ -9,5 +9,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.UserModel
         public string LastName { get; set; }
         public Address? Address { get; set; }
         public DateTime? RegistrationDate { get; set; }
+        public string? RefreshToken { get;  set; }
+        public DateTime? RefreshTokenExpiryTime { get;  set; }
     }
 }

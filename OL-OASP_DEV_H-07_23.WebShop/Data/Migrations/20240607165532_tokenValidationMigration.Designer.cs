@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OL_OASP_DEV_H_07_23.WebShop.Data;
 
@@ -11,9 +12,11 @@ using OL_OASP_DEV_H_07_23.WebShop.Data;
 namespace OL_OASP_DEV_H_07_23.WebShop.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240607165532_tokenValidationMigration")]
+    partial class tokenValidationMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -561,9 +564,10 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("RefreshToken")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("RefreshTokenExpiryTime")
+                    b.Property<DateTime>("RefreshTokenExpiryTime")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("RegistrationDate")

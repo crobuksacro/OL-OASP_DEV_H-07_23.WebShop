@@ -1,0 +1,301 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OL-OASP_DEV_H-07_23.WebShop</name>
+    </assembly>
+    <members>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Controllers.AuthController.Token(OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.Common.LoginBinding)">
+            <summary>
+            Authenticates a user and generates an access token and a refresh token.
+            </summary>
+            <param name="model">The login binding model containing the user's credentials.</param>
+            <returns>
+            A Task resulting in a <see cref="T:OL_OASP_DEV_H_07_23.WebShop.Shared.Models.ViewModel.Common.TokenViewModel"/> containing the access and refresh tokens for the user. Returns null if authentication fails.
+            </returns>
+            <remarks>
+            This method attempts to authenticate a user using their username and password. If authentication succeeds, it generates a JWT access token and a refresh token for the user. The refresh token is stored in the user's record along with its expiry time, and both tokens are returned in a TokenViewModel. If authentication fails, the method returns null.
+            </remarks>
+        </member>
+        <member name="T:OL_OASP_DEV_H_07_23.WebShop.Data.ApplicationDbContext">
+            <summary>
+            Application db context
+            </summary>
+        </member>
+        <member name="T:OL_OASP_DEV_H_07_23.WebShop.Data.Migrations.init">
+            <inheritdoc />
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Data.Migrations.init.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Data.Migrations.init.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Data.Migrations.init.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:OL_OASP_DEV_H_07_23.WebShop.Data.Migrations.ProductCategoryMigration">
+            <inheritdoc />
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Data.Migrations.ProductCategoryMigration.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Data.Migrations.ProductCategoryMigration.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Data.Migrations.ProductCategoryMigration.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:OL_OASP_DEV_H_07_23.WebShop.Data.Migrations.companyMigration">
+            <inheritdoc />
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Data.Migrations.companyMigration.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Data.Migrations.companyMigration.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Data.Migrations.companyMigration.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:OL_OASP_DEV_H_07_23.WebShop.Data.Migrations.companyMigration2">
+            <inheritdoc />
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Data.Migrations.companyMigration2.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Data.Migrations.companyMigration2.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Data.Migrations.companyMigration2.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:OL_OASP_DEV_H_07_23.WebShop.Data.Migrations.companyMigration3">
+            <inheritdoc />
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Data.Migrations.companyMigration3.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Data.Migrations.companyMigration3.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Data.Migrations.companyMigration3.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:OL_OASP_DEV_H_07_23.WebShop.Data.Migrations.orederMigration">
+            <inheritdoc />
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Data.Migrations.orederMigration.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Data.Migrations.orederMigration.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Data.Migrations.orederMigration.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:OL_OASP_DEV_H_07_23.WebShop.Data.Migrations.tokenValidationMigration">
+            <inheritdoc />
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Data.Migrations.tokenValidationMigration.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Data.Migrations.tokenValidationMigration.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Data.Migrations.tokenValidationMigration.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:OL_OASP_DEV_H_07_23.WebShop.Data.Migrations.tokenValidationMigration2">
+            <inheritdoc />
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Data.Migrations.tokenValidationMigration2.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Data.Migrations.tokenValidationMigration2.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Data.Migrations.tokenValidationMigration2.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Services.Implementations.AccountService.GetToken(OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.Common.LoginBinding)">
+            <summary>
+            Authenticates a user and generates an access token and a refresh token.
+            </summary>
+            <param name="model">The login binding model containing the user's credentials.</param>
+            <returns>
+            A Task resulting in a <see cref="T:OL_OASP_DEV_H_07_23.WebShop.Shared.Models.ViewModel.Common.TokenViewModel"/> containing the access and refresh tokens for the user. Returns null if authentication fails.
+            </returns>
+            <remarks>
+            This method attempts to authenticate a user using their username and password. If authentication succeeds, it generates a JWT access token and a refresh token for the user. The refresh token is stored in the user's record along with its expiry time, and both tokens are returned in a TokenViewModel. If authentication fails, the method returns null.
+            </remarks>
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Services.Implementations.AccountService.GenerateRefreshToken">
+            <summary>
+            Generates a random string to be used as a refresh token.
+            </summary>
+            <returns>
+            A string representing the generated refresh token.
+            </returns>
+            <remarks>
+            This method generates a refresh token by creating a random 64-byte number and converting it to a Base64 string. This token is used to securely refresh authentication tokens when they expire.
+            </remarks>
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Services.Implementations.BuyerService.GetOrders(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Get orders by user role
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Services.Implementations.BuyerService.GetOrders(OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.UserModel.ApplicationUser)">
+            <summary>
+            Get orders by buyer
+            </summary>
+            <param name="buyer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Services.Implementations.BuyerService.GetOrder(System.Int64)">
+            <summary>
+            Get order by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Services.Implementations.BuyerService.GetOrders">
+            <summary>
+            Get all orders
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Services.Implementations.BuyerService.AddOrder(OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.OrderModels.OrderBinding,System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Order item
+            </summary>
+            <param name="model"></param>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Services.Implementations.BuyerService.AddOrder(OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.OrderModels.OrderBinding,OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.UserModel.ApplicationUser)">
+            <summary>
+            Order item
+            </summary>
+            <param name="model"></param>
+            <param name="buyer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Services.Implementations.BuyerService.UpdateOrder(OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.OrderModels.OrderUpdateBinding)">
+            <summary>
+            Updates order
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Services.Implementations.ProductService.GetQuantityTypes">
+            <summary>
+            Gets all Quantity Types for product
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Services.Implementations.ProductService.AddProductItem(OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.ProductModels.ProductItemBinding)">
+            <summary>
+            Add product item
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Services.Implementations.ProductService.GetProductItem(System.Int64)">
+            <summary>
+            Get product item by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Services.Implementations.ProductService.DeleteProductItem(System.Int64)">
+            <summary>
+            Delte product item
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Services.Implementations.ProductService.UpdateProductItem(OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.ProductModels.ProductItemUpdateBinding)">
+            <summary>
+            Update product item
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Services.Implementations.ProductService.GetProductCategories(System.Nullable{System.Boolean})">
+            <summary>
+            Get product Categorys
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Services.Implementations.ProductService.UpdateProductCategory(OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.ProductModels.ProductCategoryUpdateBinding)">
+            <summary>
+            Update Product Category
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Services.Implementations.ProductService.DeleteProductCategory(System.Int64)">
+            <summary>
+            Delete Product Category
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Services.Implementations.ProductService.GetProductCategories(System.Int32,System.String,System.Nullable{System.Int32})">
+            <summary>
+            Add product Categories by paggination
+            </summary>
+            <param name="page"></param>
+            <param name="searchTerm"></param>
+            <param name="offset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Services.Implementations.ProductService.AddProductCategory(OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.ProductModels.ProductCategoryBinding)">
+            <summary>
+            Add new product category
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Services.Implementations.ProductService.GetProductCategory(System.Int64)">
+            <summary>
+            Get Product category by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Services.Implementations.ProductService.GetProductCategory``1(System.Int64)">
+            <summary>
+            Get product category with id
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Services.Interfaces.IProductService.GetProductCategory(System.Int64)">
+            <summary>
+            Get Product category by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Services.Interfaces.IProductService.GetProductCategory``1(System.Int64)">
+            <summary>
+            Get product category with id
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OL_OASP_DEV_H_07_23.WebShop.Services.Interfaces.IProductService.GetQuantityTypes">
+            <summary>
+            Gets all Quantity Types for product
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

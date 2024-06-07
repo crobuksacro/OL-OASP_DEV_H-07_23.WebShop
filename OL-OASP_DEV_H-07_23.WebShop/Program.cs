@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.PlatformAbstractions;
+using Microsoft.OpenApi.Models;
 using OL_OASP_DEV_H_07_23.WebShop.Data;
 using OL_OASP_DEV_H_07_23.WebShop.Mapping;
 using OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.UserModel;
@@ -25,7 +27,40 @@ namespace OL_OASP_DEV_H_07_23.WebShop
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
             builder.Services.AddSingleton<IIdentitySetup, IdentitySetup>();
             builder.Services.AddScoped<IProductService, ProductService>();
+            builder.Services.AddScoped<IAccountService, AccountService>();
             builder.Services.AddScoped<IBuyerService, BuyerService>();
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "OL-OASP_DEV_H-07_23.WebShop API", Version = "v1" });
+                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+                var xmlPath = Path.Combine(basePath, "OL-OASP_DEV_H-07_23.WebShop.xml");
+                c.IncludeXmlComments(xmlPath);
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Bearer {token}\"",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer"
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+        {
+            {
+                new OpenApiSecurityScheme
+                {
+                    Reference = new OpenApiReference
+                    {
+                        Type = ReferenceType.SecurityScheme,
+                        Id = "Bearer"
+                    }
+                },
+                new string[] {}
+            }
+        });
+
+            });
+
+
 
             builder.Services.AddAutoMapper(typeof(MappingProfile));
 
@@ -69,6 +104,12 @@ namespace OL_OASP_DEV_H_07_23.WebShop
             app.UseStaticFiles();
 
             app.UseRouting();
+
+
+            // Configure the HTTP request pipeline.
+            app.UseSwagger();
+            app.UseSwaggerUI();
+
 
             app.UseAuthorization();
 
