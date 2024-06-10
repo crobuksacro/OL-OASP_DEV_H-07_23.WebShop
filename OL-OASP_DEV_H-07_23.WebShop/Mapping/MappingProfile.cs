@@ -33,6 +33,8 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Mapping
 
             CreateMap<ApplicationUser, ApplicationUserViewModel>();
 
+            CreateMap<AddressBinding, Address>();
+
             CreateMap<OrderUpdateBinding, Order>();
             CreateMap<OrderBinding, Order>();
             CreateMap<Order, OrderViewModel>();
