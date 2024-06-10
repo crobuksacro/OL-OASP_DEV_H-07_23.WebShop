@@ -24,6 +24,12 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
             this.mapper = mapper;
         }
 
+
+        public int Oduzmi(int a, int b)
+        {
+            return a - b;
+        }
+
         /// <summary>
         /// Get orders by user role
         /// </summary>
