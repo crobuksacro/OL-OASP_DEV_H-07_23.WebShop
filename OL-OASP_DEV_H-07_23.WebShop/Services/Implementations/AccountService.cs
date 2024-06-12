@@ -16,6 +16,15 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
         private IMapper mapper;
         private SignInManager<ApplicationUser> signInManager;
 
+        public AccountService(UserManager<ApplicationUser> userManager,
+            ApplicationDbContext db, 
+            IMapper mapper, SignInManager<ApplicationUser> signInManager)
+        {
+            this.userManager = userManager;
+            this.db = db;
+            this.mapper = mapper;
+            this.signInManager = signInManager;
+        }
 
         public async Task<ApplicationUserViewModel?> CreateUser(RegistrationBinding model, string role)
         {

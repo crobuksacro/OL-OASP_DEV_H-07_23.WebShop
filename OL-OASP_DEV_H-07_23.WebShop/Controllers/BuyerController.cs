@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OL_OASP_DEV_H_07_23.WebShop.Services.Interfaces;
-using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.AccountModels;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Dto;
 
 namespace OL_OASP_DEV_H_07_23.WebShop.Controllers

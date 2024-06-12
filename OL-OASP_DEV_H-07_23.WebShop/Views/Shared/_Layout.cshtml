@@ -1,4 +1,21 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.UserModel
+@using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Dto
+
+@inject SignInManager<ApplicationUser> SignInManager;
+@inject UserManager<ApplicationUser> UserManager;
+@{
+    string role = string.Empty;
+    if(SignInManager.IsSignedIn(User))
+    {
+        var user = await UserManager.GetUserAsync(User);
+        var roles = await UserManager.GetRolesAsync(user);
+        role = roles[0];
+    }
+}
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -19,12 +36,27 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+
+                        @switch(role){
+                            case Roles.Admin:
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Administracija kategorija</a>
+                                </li>
+                                break;
+                            case Roles.Buyer:
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Buyer" asp-action="Index">Proizvodi</a>
+                                </li>
+                                break;
+                            default:
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                </li>
+                                break;
+                        }
+
+
+
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
