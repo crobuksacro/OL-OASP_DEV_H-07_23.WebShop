@@ -24,6 +24,10 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Controllers
             return View(categorys);
         }
 
-
+        public async Task<IActionResult> Details(long id)
+        {
+            var category = await productService.GetProductCategory(id);
+            return View(category);
+        }
     }
 }
