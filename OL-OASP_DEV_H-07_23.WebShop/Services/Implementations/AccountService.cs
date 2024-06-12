@@ -5,10 +5,11 @@ using OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.UserModel;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.ViewModel.UserModel;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.AccountModels;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Dto;
+using OL_OASP_DEV_H_07_23.WebShop.Services.Interfaces;
 
 namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
 {
-    public class AccountService
+    public class AccountService : IAccountService
     {
         private UserManager<ApplicationUser> userManager;
         private ApplicationDbContext db;
@@ -19,7 +20,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
         public async Task<ApplicationUserViewModel?> CreateUser(RegistrationBinding model, string role)
         {
             var find = await userManager.FindByNameAsync(model.Email);
-            if(find != null)
+            if (find != null)
             {
                 return null;
             }
@@ -47,7 +48,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
             return null;
         }
 
-        
+
 
 
     }
