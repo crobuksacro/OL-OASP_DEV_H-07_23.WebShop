@@ -40,7 +40,14 @@
                         <td>@item.Price</td>
                         <td>@item.Quantity</td>
                         <td>
-                            <input type="button" class="btn btn-primary" value="Odaberi" />
+                            <input type="button" 
+                                class="btn btn-primary"
+                                att-product-name="@item.Name"
+                                att-product-description="@item.Description"
+                                att-product-price="@item.Price"
+                                att-product-quantity="@item.Quantity"
+                                onclick="AddItemToShoppingChart(this)"
+                                value="Odaberi" />
                         </td>
                     </tr>
                 }
@@ -50,9 +57,72 @@
             </tbody>
         </table>
     </div>
-
-
-
-
-
 </div>
+
+<div class="modal fade" id="order-modal" tabindex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="orderModalLabel">Detalji Narudžbe</h5>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="product-name" class="col-form-label">Naziv Proizvoda:</label>
+                        <input type="text" class="form-control" id="product-name" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-description" class="col-form-label">Opis:</label>
+                        <textarea class="form-control" id="product-description" readonly></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-price" class="col-form-label">Cijena:</label>
+                        <input type="text" class="form-control" id="product-price" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-quantity" class="col-form-label">Dostupna Količina:</label>
+                        <input type="text" class="form-control" id="product-quantity" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="order-quantity" class="col-form-label">Količina za Narudžbu:</label>
+                        <input type="number" class="form-control" id="order-quantity" min="1">
+                        <div class="invalid-feedback">Količina za narudžbu ne može biti veća od dostupne količine!</div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="CloseModal()" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+                <button type="button" class="btn btn-primary" onclick="ConfirmOrder()">Potvrdi</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let currentButton; // Variable to store the reference to the button that opened the modal
+
+
+    function AddItemToShoppingChart(e) {
+        currentButton = e;
+
+        var productName = e.getAttribute("att-product-name");
+        var productDescription = e.getAttribute("att-product-description");
+        var productPrice = e.getAttribute("att-product-price");
+        var productQuantity = e.getAttribute("att-product-quantity");
+
+
+        document.getElementById("product-name").value = productName;
+        document.getElementById("product-description").value = productDescription;
+        document.getElementById("product-price").value = productPrice;
+        document.getElementById("product-quantity").value = productQuantity;
+        document.getElementById("order-quantity").value = 1;  // Default quantity for order
+
+        $('#order-modal').modal('show');
+
+    }
+
+    function CloseModal() {
+        $('#order-modal').modal('hide');
+    }
+    
+</script>
