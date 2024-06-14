@@ -1,0 +1,6 @@
+﻿
+Napraviti View za kupca sa prikazom svih stavki narudžbe koje je kupac napravio. View treba da sadrži sledeće informacije:
+
+Naziv proizvoda
+Količina,
+Datum i vreme narudžbe
