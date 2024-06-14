@@ -49,7 +49,13 @@ namespace OL_OASP_DEV_H_07_23.WebShop
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-
+            // Add session support
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30); // Set session timeout
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
 
             builder.Services.AddControllersWithViews();
 
@@ -73,6 +79,10 @@ namespace OL_OASP_DEV_H_07_23.WebShop
             app.UseRouting();
 
             app.UseAuthorization();
+
+            // Add session middleware
+            app.UseSession();
+
 
             app.MapControllerRoute(
                 name: "default",

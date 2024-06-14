@@ -30,6 +30,8 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Mapping
 
             CreateMap<Address, AddressViewModel>();
             CreateMap<Address, AddressUpdateBinding>();
+            CreateMap<Address, AddressBinding>();
+            
 
             CreateMap<ApplicationUser, ApplicationUserViewModel>();
 

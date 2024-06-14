@@ -17,7 +17,17 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
         private readonly ApplicationDbContext db;
         private readonly IMapper mapper;
         private AppSettings appSettings;
+        /// <summary>
+        /// Get product list by ids
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<List<ProductItemViewModel>> GetProductItems(List<long> id)
+        {
+            var dbo = await db.ProductItems.Where(y => id.Contains(y.Id)).ToListAsync();
+            return dbo.Select(y => mapper.Map<ProductItemViewModel>(y)).ToList();
 
+        }
 
         public ProductService(ApplicationDbContext db, IMapper mapper, IOptions<AppSettings> appSettings)
         {

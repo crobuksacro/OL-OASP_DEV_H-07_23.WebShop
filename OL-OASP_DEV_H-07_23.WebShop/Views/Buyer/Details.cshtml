@@ -40,14 +40,15 @@
                         <td>@item.Price</td>
                         <td>@item.Quantity</td>
                         <td>
-                            <input type="button" 
-                                class="btn btn-primary"
-                                att-product-name="@item.Name"
-                                att-product-description="@item.Description"
-                                att-product-price="@item.Price"
-                                att-product-quantity="@item.Quantity"
-                                onclick="AddItemToShoppingChart(this)"
-                                value="Odaberi" />
+                            <input type="button"
+                                   class="btn btn-primary"
+                                   att-id="@item.Id"
+                                   att-product-name="@item.Name"
+                                   att-product-description="@item.Description"
+                                   att-product-price="@item.Price"
+                                   att-product-quantity="@item.Quantity"
+                                   onclick="AddItemToShoppingChart(this)"
+                                   value="Odaberi" />
                         </td>
                     </tr>
                 }
@@ -57,6 +58,8 @@
             </tbody>
         </table>
     </div>
+    <input type="button" class="btn btn-success" value="Dodaj u košaricu" id="btn-order-final" />
+
 </div>
 
 <div class="modal fade" id="order-modal" tabindex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
@@ -100,7 +103,7 @@
 
 <script>
     let currentButton; // Variable to store the reference to the button that opened the modal
-
+    const orderItems = {}; // Object to store the order items
 
     function AddItemToShoppingChart(e) {
         currentButton = e;
@@ -124,5 +127,72 @@
     function CloseModal() {
         $('#order-modal').modal('hide');
     }
-    
+
+
+    function ConfirmOrder() {
+        var orderQuantity = parseInt(document.getElementById("order-quantity").value);
+        var productQuantity = parseInt(document.getElementById("product-quantity").value);
+        var productId = currentButton.getAttribute("att-id");
+
+        if (orderQuantity > productQuantity) {
+            document.getElementById("order-quantity").classList.add("is-invalid");
+            return;
+        }
+        else {
+            document.getElementById("order-quantity").classList.remove("is-invalid");
+
+            if (currentButton) {
+                currentButton.className = 'btn btn-success';
+                currentButton.value = 'Odabrano: ' + orderQuantity;
+            }
+            orderItems[productId] = orderQuantity;
+            CloseModal();
+        }
+
+
+    }
+
+    document.getElementById("btn-order-final").addEventListener("click", function () {
+        // Create an array to store the order items
+        let orderItemsArray = [];
+
+        for (const [productId, quantity] of Object.entries(orderItems)) {
+            orderItemsArray.push({
+                ProductItemId: productId,
+                Quantity: quantity
+            });
+        }
+
+        // Send the order items array to the server as JSON
+        fetch('/Buyer/AddToOrderItem', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(orderItemsArray)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    alert('Network response was not ok');
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Success:', data);
+                window.location.href = '/Buyer/Order';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+
+    });
+
+
+
+
 </script>
+
+
+

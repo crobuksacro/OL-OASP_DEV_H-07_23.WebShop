@@ -5,6 +5,12 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Interfaces
 {
     public interface IProductService
     {
+        /// <summary>
+        /// Get product list by ids
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<List<ProductItemViewModel>> GetProductItems(List<long> id);
         Task<ProductCategoryViewModel> AddProductCategory(ProductCategoryBinding model);
         Task<ProductItemViewModel> AddProductItem(ProductItemBinding model);
         Task<ProductCategoryViewModel> DeleteProductCategory(long id);
@@ -26,11 +32,11 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Interfaces
         /// <typeparam name="T"></typeparam>
         /// <param name="id"></param>
         /// <returns></returns>
-         Task<T> GetProductCategory<T>(long id);
+        Task<T> GetProductCategory<T>(long id);
         /// <summary>
         /// Gets all Quantity Types for product
         /// </summary>
         /// <returns></returns>
-       Task<List<QuantityTypeViewModel>> GetQuantityTypes();
+        Task<List<QuantityTypeViewModel>> GetQuantityTypes();
     }
 }

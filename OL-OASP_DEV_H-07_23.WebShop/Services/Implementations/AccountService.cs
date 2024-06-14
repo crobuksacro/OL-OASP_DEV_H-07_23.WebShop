@@ -6,6 +6,8 @@ using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.ViewModel.UserModel;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.AccountModels;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Dto;
 using OL_OASP_DEV_H_07_23.WebShop.Services.Interfaces;
+using System.Security.Claims;
+using Microsoft.EntityFrameworkCore;
 
 namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
 {
@@ -56,8 +58,22 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
 
             return null;
         }
+        /// <summary>
+        /// Get user address
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public async Task<T> GetUserAddress<T>(ClaimsPrincipal user)
+        {
+            var applicationUser = await userManager.GetUserAsync(user);
+            var dboUser = db.Users
+                .Include(x => x.Address)
+                .FirstOrDefault(x => x.Id == applicationUser.Id);
 
+            return mapper.Map<T>(dboUser.Address);
 
+        }
 
 
     }
