@@ -36,6 +36,13 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Controllers
             return View(response);
         }
 
+        public async Task<IActionResult> CancelOrder(long id)
+        {
+            var orders = await buyerService.CancelOrder(id);
+            return RedirectToAction("MyOrders");
+        }
+
+
         public async Task<IActionResult> MyOrders()
         {
             var orders = await buyerService.GetOrders(User);
