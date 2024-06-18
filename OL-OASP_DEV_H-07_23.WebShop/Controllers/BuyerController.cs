@@ -41,6 +41,8 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Controllers
         public async Task<IActionResult> Order(OrderBinding model)
         {
            var order = await buyerService.AddOrder(model,User);
+           HttpContext.Session.Remove("OrderItems");
+
             return RedirectToAction("Index");
         }
 
