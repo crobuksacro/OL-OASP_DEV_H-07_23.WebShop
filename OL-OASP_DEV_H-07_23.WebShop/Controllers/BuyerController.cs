@@ -51,7 +51,12 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Controllers
 
         public async Task<IActionResult> MyOrder(long id)
         {
-            var orders = await buyerService.GetOrder(id);
+            var orders = await buyerService.GetOrder(id, User);
+            if(orders == null)
+            {
+                return NotFound();
+            }
+          
             return View(orders);
         }
 

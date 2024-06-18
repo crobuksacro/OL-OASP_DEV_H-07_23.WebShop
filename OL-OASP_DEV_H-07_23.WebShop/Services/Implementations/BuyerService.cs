@@ -78,6 +78,47 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
             return mapper.Map<OrderViewModel>(dbo);
         }
         /// <summary>
+        /// Get order by role and order id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public async Task<OrderViewModel> GetOrder(long id, ClaimsPrincipal user)
+        {
+            var applicationUser = await userManager.GetUserAsync(user);
+            var role = await userManager.GetRolesAsync(applicationUser);
+
+            switch (role[0])
+            {
+                case Roles.Admin:
+                    return await GetOrder(id);
+                case Roles.Buyer:
+                    return await GetOrder(id,applicationUser);
+                default:
+                    throw new NotImplementedException($"{role[0]} isn't implemented in get orders!");
+
+            }
+
+        }
+
+        /// <summary>
+        /// Get order by app user and orderid
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="buyer"></param>
+        /// <returns></returns>
+        public async Task<OrderViewModel> GetOrder(long id, ApplicationUser buyer)
+        {
+            var dbo = await db.Orders
+                .Include(y => y.Buyer)
+                 .Include(y => y.OrderItems)
+                .Include(y => y.OrderAddress)
+                .FirstOrDefaultAsync(y => y.Id == id && y.BuyerId == buyer.Id);
+            return mapper.Map<OrderViewModel>(dbo);
+        }
+
+        /// <summary>
         /// Get all orders
         /// </summary>
         /// <returns></returns>

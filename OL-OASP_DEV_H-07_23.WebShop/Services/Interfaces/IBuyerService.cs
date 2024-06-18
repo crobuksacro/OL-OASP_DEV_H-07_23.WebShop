@@ -15,5 +15,13 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Interfaces
         Task<List<OrderViewModel>> GetOrders(ApplicationUser buyer);
         Task<List<OrderViewModel>> GetOrders(ClaimsPrincipal user);
         Task<OrderViewModel> UpdateOrder(OrderUpdateBinding model);
+        /// <summary>
+        /// Get order by role and order id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        Task<OrderViewModel> GetOrder(long id, ClaimsPrincipal user);
     }
 }
