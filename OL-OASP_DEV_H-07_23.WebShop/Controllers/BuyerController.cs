@@ -36,6 +36,18 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Controllers
             return View(response);
         }
 
+        public async Task<IActionResult> MyOrders()
+        {
+            var orders = await buyerService.GetOrders(User);
+            return View(orders);
+        }
+
+        public async Task<IActionResult> MyOrder(long id)
+        {
+            var orders = await buyerService.GetOrder(id);
+            return View(orders);
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> Order(OrderBinding model)
