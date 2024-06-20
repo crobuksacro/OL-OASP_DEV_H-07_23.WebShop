@@ -167,7 +167,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
                 }
             }
 
-
+            dbo.OrderStatus = OrderStatus.Pending;
             dbo.Buyer = buyer;
             dbo.CalcualteTotal();
 
@@ -191,7 +191,53 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
 
             return mapper.Map<OrderViewModel>(dbo);
         }
+        /// <summary>
+        /// Delate order
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<OrderViewModel> DelateOrder(long id)
+        {
 
+            await CancelOrder(id);
+
+            var dbo = await db.Orders
+                .FirstOrDefaultAsync(y => y.Id == id);
+
+            dbo.Valid = false;
+            await db.SaveChangesAsync();
+            return mapper.Map<OrderViewModel>(dbo);
+        }
+        /// <summary>
+        /// Regulate Status of order
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <param name="orderStatus"></param>
+        /// <returns></returns>
+        public async Task<OrderViewModel> RegulateOrder(long orderId, OrderStatus orderStatus)
+        {
+
+            switch (orderStatus)
+            {
+
+                case OrderStatus.Canceled:
+                  return  await CancelOrder(orderId);
+
+                default:
+                    var dbo = await db.Orders.FindAsync(orderId);
+                    dbo.OrderStatus = orderStatus;
+                    return mapper.Map<OrderViewModel>(dbo);
+            }
+
+
+
+
+        }
+        /// <summary>
+        /// Cancel Order
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<OrderViewModel> CancelOrder(long id)
         {
             var dbo = await db.Orders
@@ -212,8 +258,8 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
                 }
             }
 
+            dbo.OrderStatus = OrderStatus.Canceled;
 
-            dbo.Valid = false;
             await db.SaveChangesAsync();
             return mapper.Map<OrderViewModel>(dbo);
         }

@@ -7,14 +7,35 @@
     }
 
 
-    //public enum QuantityType
-    //{
-    //    Day = 1,
-    //    Month,
-    //    Year,
-    //    Kg,
-    //    L,
-    //    Dg,
-    //    Item
-    //}
+    public enum OrderStatus
+    {
+        /// <summary>
+        /// Narudžba je primljena, ali još nije obrađena
+        /// </summary>
+        Pending,
+        /// <summary>
+        /// Narudžba se obrađuje
+        /// </summary>
+        Processing,
+        /// <summary>
+        /// Narudžba je poslana
+        /// </summary>
+        Shipped,
+        /// <summary>
+        /// Narudžba je isporučena
+        /// </summary>
+        Delivered,
+        /// <summary>
+        /// Narudžba je otkazana
+        /// </summary>
+        Canceled,
+        /// <summary>
+        /// Narudžba je vraćena
+        /// </summary>
+        Returned,
+        /// <summary>
+        /// Narudžba je refundirana
+        /// </summary>
+        Refunded       
+    }
 }

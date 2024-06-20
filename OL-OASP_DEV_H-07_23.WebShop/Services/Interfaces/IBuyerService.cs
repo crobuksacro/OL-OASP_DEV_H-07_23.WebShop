@@ -7,6 +7,12 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Interfaces
 {
     public interface IBuyerService
     {
+        /// <summary>
+        /// Delate order
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<OrderViewModel> DelateOrder(long id);
         Task<OrderViewModel> AddOrder(OrderBinding model, ApplicationUser buyer);
         Task<OrderViewModel> AddOrder(OrderBinding model, ClaimsPrincipal user);
         Task<OrderViewModel> CancelOrder(long id);

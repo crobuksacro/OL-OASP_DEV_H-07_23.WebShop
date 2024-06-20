@@ -1,0 +1,53 @@
+﻿@model IEnumerable<OL_OASP_DEV_H_07_23.WebShop.Shared.Models.ViewModel.OrderModels.OrderViewModel>
+
+@{
+    ViewData["Title"] = "MyOrders";
+}
+
+<h1>Moje narudžbe</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Created)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Message)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Created)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Message)
+                </td>
+                <td>
+                    @Html.ActionLink("Detalji narudžbe", "Order", new { id = item.Id }) |
+                    @Html.ActionLink("Storno", "CancelOrder", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

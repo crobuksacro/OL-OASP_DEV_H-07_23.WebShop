@@ -1,4 +1,5 @@
 ﻿using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Base.OrderModels;
+using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Dto;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.ViewModel.Common;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.ViewModel.UserModel;
 using System.ComponentModel.DataAnnotations;
@@ -13,6 +14,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Shared.Models.ViewModel.OrderModels
         public DateTime Created { get; set; }
         public ApplicationUserViewModel? Buyer { get; set; }
         public AddressViewModel? OrderAddress { get; set; }
+        public OrderStatus? OrderStatus { get; set; }
         public List<OrderItemViewModel>? OrderItems { get; set; }
         [Required(ErrorMessage = "Total price is required.")]
         [Column(TypeName = "decimal(7, 2)")]

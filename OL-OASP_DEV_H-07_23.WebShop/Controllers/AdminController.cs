@@ -11,11 +11,33 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Controllers
     public class AdminController : Controller
     {
         private readonly IProductService productService;
+        private readonly IBuyerService buyerService;
 
-        public AdminController(IProductService productService)
+
+        public AdminController(IProductService productService, IBuyerService buyerService)
         {
             this.productService = productService;
+            this.buyerService = buyerService;
         }
+
+        public async Task<IActionResult> Orders()
+        {
+            var orders = await buyerService.GetOrders(User);
+            return View(orders);
+        }
+
+        public async Task<IActionResult> Order(long id)
+        {
+            var order = await buyerService.GetOrder(id, User);
+            return View(order);
+        }
+
+        public async Task<IActionResult> CancelOrder(long id)
+        {
+            var orders = await buyerService.CancelOrder(id);
+            return RedirectToAction("Orders");
+        }
+
 
         public async Task<IActionResult> Index()
         {
