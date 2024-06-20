@@ -1,5 +1,6 @@
 ﻿using OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.UserModel;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.OrderModels;
+using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Dto;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.ViewModel.OrderModels;
 using System.Security.Claims;
 
@@ -7,6 +8,13 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Interfaces
 {
     public interface IBuyerService
     {
+        /// <summary>
+        /// Regulate Status of order
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <param name="orderStatus"></param>
+        /// <returns></returns>
+        Task<OrderViewModel> RegulateOrderStatus(long orderId, OrderStatus orderStatus);
         /// <summary>
         /// Delate order
         /// </summary>

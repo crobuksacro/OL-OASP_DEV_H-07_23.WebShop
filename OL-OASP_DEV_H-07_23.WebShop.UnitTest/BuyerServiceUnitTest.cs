@@ -1,5 +1,6 @@
 ﻿using OL_OASP_DEV_H_07_23.WebShop.Services.Interfaces;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.OrderModels;
+using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Dto;
 
 namespace OL_OASP_DEV_H_07_23.WebShop.UnitTest
 {
@@ -94,8 +95,45 @@ namespace OL_OASP_DEV_H_07_23.WebShop.UnitTest
             Assert.NotEqual(order.OrderAddress.Country, result.OrderAddress.Country);
         }
         [Fact]
-        public async void CancelOrder_RemovesOrderFromDb_ValidatesIfResponseIsNotNull()
+        public async void DelateOrder_RemovesOrderFromDb_ValidatesIfResponseIsNotNull()
         {
+            var order = await buyerService.AddOrder(new Shared.Models.Binding.OrderModels.OrderBinding
+            {
+                Message = "Test",
+                OrderAddress = new Shared.Models.Binding.Common.AddressBinding
+                {
+                    City = "Test",
+                    Country = "Test",
+                    Street = "Test",
+                    Number = "Test",
+                },
+                OrderItems = new List<OrderItemBinding>
+                    {
+                        new OrderItemBinding
+                        {
+                            ProductItemId = ProductCategories[0].ProductItems.First().Id,
+                            Quantity = 10
+                        }
+                    }
+
+            }, ApplicationUser);
+            var previusOrders = await buyerService.GetOrders(ApplicationUser);
+            int previusOrdersCount = previusOrders.Count;
+
+            await buyerService.DelateOrder(order.Id);
+
+            previusOrders = await buyerService.GetOrders(ApplicationUser);
+            int newOrdersCount = previusOrders.Count;
+
+            Assert.Equal(previusOrdersCount-1, newOrdersCount);
+
+        }
+
+        [Fact]
+        public async void CancelOrder_SetsStatusOfOrderToCanceled_ValidatesIfResponseIsInStatusCanceled()
+        {
+
+
             var order = await buyerService.AddOrder(new Shared.Models.Binding.OrderModels.OrderBinding
             {
                 Message = "Test",
@@ -122,9 +160,44 @@ namespace OL_OASP_DEV_H_07_23.WebShop.UnitTest
             await buyerService.CancelOrder(order.Id);
 
             previusOrders = await buyerService.GetOrders(ApplicationUser);
-            int newOrdersCount = previusOrders.Count;
+            var previusOrder = previusOrders.FirstOrDefault(y => y.Id == order.Id);
+            Assert.Equal(OrderStatus.Canceled, previusOrder.OrderStatus);
 
-            Assert.Equal(previusOrdersCount-1, newOrdersCount);
+
+        }
+
+        [Fact]
+        public async void RegulateOrderStatus_ChangesOrderStatus_ValidatesIfResponseIsValidStatus()
+        {
+
+
+            var order = await buyerService.AddOrder(new Shared.Models.Binding.OrderModels.OrderBinding
+            {
+                Message = "Test",
+                OrderAddress = new Shared.Models.Binding.Common.AddressBinding
+                {
+                    City = "Test",
+                    Country = "Test",
+                    Street = "Test",
+                    Number = "Test",
+                },
+                OrderItems = new List<OrderItemBinding>
+                    {
+                        new OrderItemBinding
+                        {
+                            ProductItemId = ProductCategories[0].ProductItems.First().Id,
+                            Quantity = 10
+                        }
+                    }
+
+            }, ApplicationUser);
+
+
+            await buyerService.RegulateOrderStatus(order.Id,OrderStatus.Processing);
+            order = await buyerService.GetOrder(order.Id);
+
+            Assert.Equal(OrderStatus.Processing, order.OrderStatus);
+
 
         }
     }

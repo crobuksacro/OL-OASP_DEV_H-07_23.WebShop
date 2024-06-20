@@ -214,7 +214,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
         /// <param name="orderId"></param>
         /// <param name="orderStatus"></param>
         /// <returns></returns>
-        public async Task<OrderViewModel> RegulateOrder(long orderId, OrderStatus orderStatus)
+        public async Task<OrderViewModel> RegulateOrderStatus(long orderId, OrderStatus orderStatus)
         {
 
             switch (orderStatus)
