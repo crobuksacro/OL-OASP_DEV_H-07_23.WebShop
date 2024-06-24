@@ -3,5 +3,6 @@
     public class AppSettings
     {
         public int PaginationOffset { get; set; }
+        public int ExpireSessionInHours { get; set; }
     }
 }

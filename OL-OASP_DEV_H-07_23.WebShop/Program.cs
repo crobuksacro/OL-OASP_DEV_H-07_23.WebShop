@@ -27,6 +27,8 @@ namespace OL_OASP_DEV_H_07_23.WebShop
             builder.Services.AddScoped<IProductService, ProductService>();
             builder.Services.AddScoped<IBuyerService, BuyerService>();
             builder.Services.AddScoped<IAccountService, AccountService>();
+            builder.Services.AddScoped<ICommonService, CommonService>();
+            builder.Services.AddSingleton<IHostedService, QueueProcessor>();
 
 
             builder.Services.AddAutoMapper(typeof(MappingProfile));

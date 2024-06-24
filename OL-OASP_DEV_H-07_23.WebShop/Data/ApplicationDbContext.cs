@@ -185,6 +185,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Data
         #endregion
         #region Common
         public DbSet<Address> Addresss { get; set; }
+        public DbSet<SessionItem> SessionItems { get; set; }
         #endregion
         #region Order
         public DbSet<OrderItem> OrderItems { get; set; }

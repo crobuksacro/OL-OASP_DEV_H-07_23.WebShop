@@ -14,18 +14,33 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Controllers
         private readonly IBuyerService buyerService;
         private readonly IProductService productService;
         private readonly IAccountService accountService;
+        private readonly ICommonService commonService;
+        private static string OrderItemSessionKey = "OrderItems";
 
-        public BuyerController(IBuyerService buyerService, IProductService productService, IAccountService accountService)
+        public BuyerController(IBuyerService buyerService, IProductService productService, IAccountService accountService, ICommonService commonService)
         {
             this.buyerService = buyerService;
             this.productService = productService;
             this.accountService = accountService;
+            this.commonService = commonService;
         }
         public async Task<IActionResult> Order()
         {
-            var sessionOrderItems = HttpContext.Session.GetString("OrderItems");
+            var sessionOrderItems = HttpContext.Session.GetString(OrderItemSessionKey);
             List<OrderItemBinding> existingOrderItems = sessionOrderItems != null ?
                 JsonSerializer.Deserialize<List<OrderItemBinding>>(sessionOrderItems) : new List<OrderItemBinding>();
+
+            if (!existingOrderItems.Any())
+            {
+                var sessionFromDb = await commonService.GetSessionItem<List<OrderItemBinding>>(OrderItemSessionKey, User);
+                if (sessionFromDb != null)
+                {
+                    existingOrderItems = sessionFromDb;
+                    HttpContext.Session.SetString(OrderItemSessionKey, JsonSerializer.Serialize(existingOrderItems));
+                }
+
+            }
+
 
             var response = new OrderBinding
             {
@@ -52,11 +67,11 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Controllers
         public async Task<IActionResult> MyOrder(long id)
         {
             var orders = await buyerService.GetOrder(id, User);
-            if(orders == null)
+            if (orders == null)
             {
                 return NotFound();
             }
-          
+
             return View(orders);
         }
 
@@ -64,8 +79,9 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Controllers
         [HttpPost]
         public async Task<IActionResult> Order(OrderBinding model)
         {
-           var order = await buyerService.AddOrder(model,User);
-           HttpContext.Session.Remove("OrderItems");
+            var order = await buyerService.AddOrder(model, User);
+            HttpContext.Session.Remove(OrderItemSessionKey);
+            await commonService.RemoveFromSession(OrderItemSessionKey, User);
 
             return RedirectToAction("Index");
         }
@@ -90,7 +106,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Controllers
             try
             {
                 // Retrieve the existing session list of OrderItemBiding
-                var sessionOrderItems = HttpContext.Session.GetString("OrderItems");
+                var sessionOrderItems = HttpContext.Session.GetString(OrderItemSessionKey);
 
                 List<OrderItemBinding> existingOrderItems = sessionOrderItems != null ?
                     JsonSerializer.Deserialize<List<OrderItemBinding>>(sessionOrderItems) : new List<OrderItemBinding>();
@@ -110,14 +126,15 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Controllers
 
                 }
 
-                HttpContext.Session.SetString("OrderItems", JsonSerializer.Serialize(existingOrderItems));
+                await commonService.AddSessionItem(OrderItemSessionKey, existingOrderItems, User);
+                HttpContext.Session.SetString(OrderItemSessionKey, JsonSerializer.Serialize(existingOrderItems));
 
                 return Json(existingOrderItems);
             }
             catch (Exception ex)
             {
 
-               return BadRequest(ex.Message);
+                return BadRequest(ex.Message);
             }
 
         }
