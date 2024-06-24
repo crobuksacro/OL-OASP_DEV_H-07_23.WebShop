@@ -23,7 +23,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.OrderModels
         public Address? OrderAddress { get; set; }
         public long? OrderAddressId { get; set; }
         public OrderStatus? OrderStatus { get; set; }
-
+        public ICollection<BuyerFeedback>? BuyerFeedbacks { get; set; }
         public ICollection<OrderItem>? OrderItems { get; set; }
 
         public void CalcualteTotal()

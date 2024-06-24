@@ -1,0 +1,11 @@
+﻿
+Zadatak 1
+
+Dovršiti unos podataka u bazu podataka (BuyerFeedback za narudzbe).
+Napravimo dohvat gdje samo onaj korisnik koji je napravio narudzbu može vidjeti/ostaviti feedback za tu narudzbu.
+Administrator može vidjeti sve feedbackove.
+Admin moze i brisati feedbackove.
+
+Unit test koji provjerava da li korisnik može vidjeti samo svoje feedbackove, a admin sve feedbackove.
+Unit test koji provjerava brisanje feedbackove.
+Unit test za unos feedbacka.

@@ -26,25 +26,20 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Mapping
             CreateMap<ProductItemBinding, ProductItem>();
             CreateMap<ProductItemUpdateBinding, ProductItem>();
             CreateMap<QuantityType, QuantityTypeViewModel>();
-            //CreateMap<Company, CompanyViewModel>();
-
             CreateMap<Address, AddressViewModel>();
             CreateMap<Address, AddressUpdateBinding>();
             CreateMap<Address, AddressBinding>();
-            
-
             CreateMap<ApplicationUser, ApplicationUserViewModel>();
-
             CreateMap<AddressBinding, Address>();
             CreateMap<AddressUpdateBinding, Address>();
-
-
             CreateMap<OrderUpdateBinding, Order>();
             CreateMap<OrderBinding, Order>();
             CreateMap<Order, OrderViewModel>();
             CreateMap<OrderItemBinding, OrderItem>();
             CreateMap<OrderItemUpdateBiding, OrderItem>();
             CreateMap<OrderItem, OrderItemViewModel>();
+            CreateMap<BuyerFeedbackBinding, BuyerFeedback>();
+            CreateMap<BuyerFeedback, BuyerFeedbackViewModel>();
         }
     }
 }

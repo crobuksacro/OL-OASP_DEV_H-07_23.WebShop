@@ -263,5 +263,13 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
             await db.SaveChangesAsync();
             return mapper.Map<OrderViewModel>(dbo);
         }
+
+
+
+
+        public async Task<BuyerFeedbackViewModel> AddBuyerFeedback(BuyerFeedbackBinding model)
+        {
+
+        }
     }
 }

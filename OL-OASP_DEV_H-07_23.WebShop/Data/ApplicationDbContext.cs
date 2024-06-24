@@ -190,6 +190,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Data
         #region Order
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<BuyerFeedback> BuyerFeedbacks { get; set; }
         #endregion
     }
 }

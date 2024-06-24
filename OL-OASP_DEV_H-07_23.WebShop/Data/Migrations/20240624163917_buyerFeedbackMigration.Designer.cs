@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OL_OASP_DEV_H_07_23.WebShop.Data;
 
@@ -11,9 +12,11 @@ using OL_OASP_DEV_H_07_23.WebShop.Data;
 namespace OL_OASP_DEV_H_07_23.WebShop.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240624163917_buyerFeedbackMigration")]
+    partial class buyerFeedbackMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -194,7 +197,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Addresss", (string)null);
+                    b.ToTable("Addresss");
 
                     b.HasData(
                         new
@@ -245,7 +248,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("SessionItems", (string)null);
+                    b.ToTable("SessionItems");
                 });
 
             modelBuilder.Entity("OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.CompanyModels.Company", b =>
@@ -284,7 +287,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Data.Migrations
 
                     b.HasIndex("AddressId");
 
-                    b.ToTable("Companys", (string)null);
+                    b.ToTable("Companys");
 
                     b.HasData(
                         new
@@ -330,7 +333,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Data.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("BuyerFeedbacks", (string)null);
+                    b.ToTable("BuyerFeedbacks");
                 });
 
             modelBuilder.Entity("OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.OrderModels.Order", b =>
@@ -371,7 +374,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Data.Migrations
 
                     b.HasIndex("OrderAddressId");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.OrderModels.OrderItem", b =>
@@ -409,7 +412,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Data.Migrations
 
                     b.HasIndex("ProductItemId");
 
-                    b.ToTable("OrderItems", (string)null);
+                    b.ToTable("OrderItems");
                 });
 
             modelBuilder.Entity("OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.ProductModels.ProductCategory", b =>
@@ -444,7 +447,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Data.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("ProductCategorys", (string)null);
+                    b.ToTable("ProductCategorys");
                 });
 
             modelBuilder.Entity("OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.ProductModels.ProductItem", b =>
@@ -491,7 +494,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Data.Migrations
 
                     b.HasIndex("QuantityTypeId");
 
-                    b.ToTable("ProductItems", (string)null);
+                    b.ToTable("ProductItems");
                 });
 
             modelBuilder.Entity("OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.ProductModels.QuantityType", b =>
@@ -520,7 +523,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("QuantityTypes", (string)null);
+                    b.ToTable("QuantityTypes");
 
                     b.HasData(
                         new

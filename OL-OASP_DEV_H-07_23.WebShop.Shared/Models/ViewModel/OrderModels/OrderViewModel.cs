@@ -20,5 +20,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Shared.Models.ViewModel.OrderModels
         [Column(TypeName = "decimal(7, 2)")]
         [Display(Name = "Ukupno")]
         public decimal Total { get; set; }
+        public List<BuyerFeedbackViewModel>? BuyerFeedbacks { get; set; }
+
     }
 }
