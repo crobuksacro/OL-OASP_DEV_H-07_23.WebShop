@@ -125,7 +125,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.UnitTest
             previusOrders = await buyerService.GetOrders(ApplicationUser);
             int newOrdersCount = previusOrders.Count;
 
-            Assert.Equal(previusOrdersCount-1, newOrdersCount);
+            Assert.Equal(previusOrdersCount - 1, newOrdersCount);
 
         }
 
@@ -193,10 +193,45 @@ namespace OL_OASP_DEV_H_07_23.WebShop.UnitTest
             }, ApplicationUser);
 
 
-            await buyerService.RegulateOrderStatus(order.Id,OrderStatus.Processing);
+            await buyerService.RegulateOrderStatus(order.Id, OrderStatus.Processing);
             order = await buyerService.GetOrder(order.Id);
 
             Assert.Equal(OrderStatus.Processing, order.OrderStatus);
+
+
+        }
+
+        [Fact]
+        public async void AddBuyerFeedback_AddsBuyerFeedbackToOrder_ValidatesIfResponseIsNotNull()
+        {
+            var order = await buyerService.AddOrder(new Shared.Models.Binding.OrderModels.OrderBinding
+            {
+                Message = "Test",
+                OrderAddress = new Shared.Models.Binding.Common.AddressBinding
+                {
+                    City = "Test",
+                    Country = "Test",
+                    Street = "Test",
+                    Number = "Test",
+                },
+                OrderItems = new List<OrderItemBinding>
+                    {
+                        new OrderItemBinding
+                        {
+                            ProductItemId = ProductCategories[0].ProductItems.First().Id,
+                            Quantity = 10
+                        }
+                    }
+
+            }, ApplicationUser);
+            Assert.NotNull(order);
+
+            var result = await buyerService.AddBuyerFeedback(new BuyerFeedbackBinding { Comment = TestString, OrderId = order.Id, Rating = 4 });
+            Assert.NotNull(result);
+
+            Assert.Equal(TestString, result.Comment);
+            Assert.Equal(4, result.Rating);
+            Assert.Equal(order.Id, result.OrderId);
 
 
         }
