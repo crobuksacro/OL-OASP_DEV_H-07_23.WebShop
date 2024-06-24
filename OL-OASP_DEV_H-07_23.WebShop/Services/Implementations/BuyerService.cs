@@ -337,13 +337,18 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
             var dbos = db.BuyerFeedbacks
                 .Include(y=>y.Order)
                 .Where(y => y.OrderId == orderIds && y.Valid);
+          
             return dbos.Select(y => mapper.Map<BuyerFeedbackViewModel>(y)).ToList();
         }
-
-        public async Task<BuyerFeedbackViewModel> DeleteBuyerBuyerFeedback(long id)
+        /// <summary>
+        /// Delete buyer Feedback
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<BuyerFeedbackViewModel> DeleteBuyerFeedback(long id)
         {
             var dbo = await db.BuyerFeedbacks.FindAsync(id);
-            dbo.Valid = true;
+            dbo.Valid = false;
             //db.BuyerFeedbacks.Remove(dbo);
 
             await db.SaveChangesAsync();

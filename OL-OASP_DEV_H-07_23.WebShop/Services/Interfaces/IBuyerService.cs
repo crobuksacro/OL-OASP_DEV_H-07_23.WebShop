@@ -11,7 +11,12 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Interfaces
     public interface IBuyerService
     {
 
-
+        /// <summary>
+        /// Delete buyer Feedback
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<BuyerFeedbackViewModel> DeleteBuyerFeedback(long id);
         /// <summary>
         /// Adds buyer feedback
         /// </summary>

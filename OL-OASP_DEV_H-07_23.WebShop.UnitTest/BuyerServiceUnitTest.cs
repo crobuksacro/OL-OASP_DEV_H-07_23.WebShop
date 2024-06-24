@@ -234,6 +234,47 @@ namespace OL_OASP_DEV_H_07_23.WebShop.UnitTest
             Assert.Equal(order.Id, result.OrderId);
 
 
+            var feedbacks = await buyerService.GetBuyerFeedbacks(order.Id);
+            Assert.Single(feedbacks);
+
+
         }
+
+        [Fact]
+        public async void DeleteBuyerFeedback_DeletesBuyerFeedbackFromOrder_ValidatesIfResponseIsEmpty()
+        {
+            var order = await buyerService.AddOrder(new Shared.Models.Binding.OrderModels.OrderBinding
+            {
+                Message = "Test",
+                OrderAddress = new Shared.Models.Binding.Common.AddressBinding
+                {
+                    City = "Test",
+                    Country = "Test",
+                    Street = "Test",
+                    Number = "Test",
+                },
+                OrderItems = new List<OrderItemBinding>
+                    {
+                        new OrderItemBinding
+                        {
+                            ProductItemId = ProductCategories[0].ProductItems.First().Id,
+                            Quantity = 10
+                        }
+                    }
+
+            }, ApplicationUser);
+            Assert.NotNull(order);
+
+            var result = await buyerService.AddBuyerFeedback(new BuyerFeedbackBinding { Comment = TestString, OrderId = order.Id, Rating = 4 });
+
+            await buyerService.DeleteBuyerFeedback(result.Id);
+
+            var feedbacks = await buyerService.GetBuyerFeedbacks(order.Id);
+            Assert.Empty(feedbacks);
+
+
+
+        }
+
     }
 }
