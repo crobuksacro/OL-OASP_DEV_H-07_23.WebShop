@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using OL_OASP_DEV_H_07_23.WebShop.Services.Interfaces;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.Common;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.OrderModels;
+using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.ProductModels;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Dto;
 using System.Text.Json;
 
@@ -24,6 +25,22 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Controllers
             this.accountService = accountService;
             this.commonService = commonService;
         }
+
+        public async Task<IActionResult> AddBuyerFeedback(long orderId)
+        {
+            var order = new BuyerFeedbackBinding { OrderId = orderId };
+            return View(order);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddBuyerFeedback(BuyerFeedbackBinding model)
+        {
+            await buyerService.AddBuyerFeedback(model);
+            return RedirectToAction("MyOrders");
+        }
+
+
+
         public async Task<IActionResult> Order()
         {
             var sessionOrderItems = HttpContext.Session.GetString(OrderItemSessionKey);

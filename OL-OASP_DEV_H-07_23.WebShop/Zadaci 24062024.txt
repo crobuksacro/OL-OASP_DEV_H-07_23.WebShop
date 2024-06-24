@@ -9,3 +9,9 @@ Admin moze i brisati feedbackove.
 Unit test koji provjerava da li korisnik može vidjeti samo svoje feedbackove, a admin sve feedbackove.
 Unit test koji provjerava brisanje feedbackove.
 Unit test za unos feedbacka.
+
+Zadatak 2
+
+Napraviti GUI za unos feedbacka (Buyer/MyOrders).
+*Potrebno je dodati gumb "Ostavi feedback" na stranici "Moje narudzbe" (MyOrders).
+Proširite tablicu tako da prikazuje komentar i ocjenu za svaku narudžbu ukoliko je ima.
