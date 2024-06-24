@@ -24,6 +24,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.Message)
             </th>
+            <th>
+                Kontrole
+            </th>
+            <th>
+                Komentar
+            </th>
+            <th>
+                Ocjena
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -44,9 +53,21 @@
                     @Html.DisplayFor(modelItem => item.Message)
                 </td>
                 <td>
-                    @Html.ActionLink("Detalji narudžbe", "MyOrder", new { id=item.Id }) |
+                    @Html.ActionLink("Detalji narudžbe", "MyOrder", new { id = item.Id }) |
                     @Html.ActionLink("Storno", "CancelOrder", new { id = item.Id }) |
                     @Html.ActionLink("Dodaj komentar", "AddBuyerFeedback", new { orderId = item.Id })
+                </td>
+                <td>
+                    @if (item.BuyerFeedbacks != null && item.BuyerFeedbacks.Any())
+                    {
+                        <span>@item.BuyerFeedbacks.FirstOrDefault().Comment</span>
+                    }
+                </td>
+                <td>
+                    @if (item.BuyerFeedbacks != null && item.BuyerFeedbacks.Any())
+                    {
+                        <span>@item.BuyerFeedbacks.FirstOrDefault().Rating</span>
+                    }
                 </td>
             </tr>
         }
