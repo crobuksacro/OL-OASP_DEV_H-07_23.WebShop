@@ -54,14 +54,22 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
         /// <returns></returns>
         public async Task<List<OrderViewModel>> GetOrders(ApplicationUser buyer)
         {
-            var dbo = await db.Orders
+            var dbos = await db.Orders
                 .Include(y => y.Buyer)
                  .Include(y => y.OrderItems)
                 .Include(y => y.OrderAddress)
+                .Include(y => y.BuyerFeedbacks)
                 .Where(y => y.Valid && y.BuyerId == buyer.Id)
                 .ToListAsync();
 
-            return dbo.Select(y => mapper.Map<OrderViewModel>(y)).ToList();
+            foreach (var order in dbos)
+            {
+                order.BuyerFeedbacks = order.BuyerFeedbacks.Where(y => y.Valid).ToList();
+
+            }
+
+
+            return dbos.Select(y => mapper.Map<OrderViewModel>(y)).ToList();
         }
         /// <summary>
         /// Get order by id
@@ -113,8 +121,14 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
             var dbo = await db.Orders
                 .Include(y => y.Buyer)
                  .Include(y => y.OrderItems)
+                 .Include(y => y.BuyerFeedbacks)
                 .Include(y => y.OrderAddress)
                 .FirstOrDefaultAsync(y => y.Id == id && y.BuyerId == buyer.Id);
+
+
+            dbo.BuyerFeedbacks = dbo.BuyerFeedbacks.Where(y => y.Valid).ToList();
+
+
             return mapper.Map<OrderViewModel>(dbo);
         }
 
@@ -124,14 +138,21 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
         /// <returns></returns>
         public async Task<List<OrderViewModel>> GetOrders()
         {
-            var dbo = await db.Orders
+            var dbos = await db.Orders
+                .Include(y=>y.BuyerFeedbacks)
                 .Include(y => y.Buyer)
                  .Include(y => y.OrderItems)
                 .Include(y => y.OrderAddress)
                 .Where(y => y.Valid)
                 .ToListAsync();
 
-            return dbo.Select(y => mapper.Map<OrderViewModel>(y)).ToList();
+            foreach (var order in dbos)
+            {
+                order.BuyerFeedbacks = order.BuyerFeedbacks.Where(y => y.Valid).ToList();
+
+            }
+
+            return dbos.Select(y => mapper.Map<OrderViewModel>(y)).ToList();
         }
         /// <summary>
         /// Order item
@@ -266,10 +287,68 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
 
 
 
+        /// <summary>
+        /// Adds buyer feedback
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="applicationUser"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public async Task<BuyerFeedbackViewModel> AddBuyerFeedback(BuyerFeedbackBinding model, ApplicationUser applicationUser)
+        {
+            var order = db.Orders.FirstOrDefaultAsync(y => y.Id == model.OrderId && y.BuyerId == applicationUser.Id);
+            if (order == null)
+            {
+                throw new Exception("Buyer isnt valid!");
 
+            }
+            var dbo = mapper.Map<BuyerFeedback>(model);
+            db.BuyerFeedbacks.Add(dbo);
+            db.SaveChanges();
+            return mapper.Map<BuyerFeedbackViewModel>(dbo);
+
+
+        }
+
+        /// <summary>
+        /// Add buyer feedback
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public async Task<BuyerFeedbackViewModel> AddBuyerFeedback(BuyerFeedbackBinding model)
         {
 
+            var dbo = mapper.Map<BuyerFeedback>(model);
+            db.BuyerFeedbacks.Add(dbo);
+            db.SaveChanges();
+            return mapper.Map<BuyerFeedbackViewModel>(dbo);
+
+
         }
+
+        /// <summary>
+        /// Get by order id
+        /// </summary>
+        /// <param name="orderIds"></param>
+        /// <returns></returns>
+        public async Task<List<BuyerFeedbackViewModel>> GetBuyerFeedbacks(long orderIds)
+        {
+
+            var dbos = db.BuyerFeedbacks
+                .Include(y=>y.Order)
+                .Where(y => y.OrderId == orderIds && y.Valid);
+            return dbos.Select(y => mapper.Map<BuyerFeedbackViewModel>(y)).ToList();
+        }
+
+        public async Task<BuyerFeedbackViewModel> DeleteBuyerBuyerFeedback(long id)
+        {
+            var dbo = await db.BuyerFeedbacks.FindAsync(id);
+            dbo.Valid = true;
+            //db.BuyerFeedbacks.Remove(dbo);
+
+            await db.SaveChangesAsync();
+            return mapper.Map<BuyerFeedbackViewModel>(dbo);
+        }
+
     }
 }

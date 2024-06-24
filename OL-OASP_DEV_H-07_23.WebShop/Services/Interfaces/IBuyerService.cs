@@ -1,4 +1,6 @@
-﻿using OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.UserModel;
+﻿using AutoMapper;
+using OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.OrderModels;
+using OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.UserModel;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.OrderModels;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Dto;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.ViewModel.OrderModels;
@@ -8,6 +10,32 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Interfaces
 {
     public interface IBuyerService
     {
+
+
+        /// <summary>
+        /// Adds buyer feedback
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="applicationUser"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        Task<BuyerFeedbackViewModel> AddBuyerFeedback(BuyerFeedbackBinding model, ApplicationUser applicationUser);
+
+        /// <summary>
+        /// Add buyer feedback
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+       Task<BuyerFeedbackViewModel> AddBuyerFeedback(BuyerFeedbackBinding model);
+
+        /// <summary>
+        /// Get by order id
+        /// </summary>
+        /// <param name="orderIds"></param>
+        /// <returns></returns>
+        Task<List<BuyerFeedbackViewModel>> GetBuyerFeedbacks(long orderIds);
+
+
         /// <summary>
         /// Regulate Status of order
         /// </summary>
