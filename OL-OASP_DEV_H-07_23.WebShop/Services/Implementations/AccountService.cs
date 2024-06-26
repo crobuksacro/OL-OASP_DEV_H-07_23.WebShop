@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using OL_OASP_DEV_H_07_23.WebShop.Data;
 using OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.UserModel;
-using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.ViewModel.UserModel;
-using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.AccountModels;
-using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Dto;
 using OL_OASP_DEV_H_07_23.WebShop.Services.Interfaces;
+using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.AccountModels;
+using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.ViewModel.UserModel;
 using System.Security.Claims;
-using Microsoft.EntityFrameworkCore;
 
 namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
 {
@@ -84,7 +83,34 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
         {
             var dbo = await db.Users.Include(y => y.Address)
                 .FirstOrDefaultAsync(x => x.Id == userManager.GetUserId(user));
-            return mapper.Map<ApplicationUserViewModel>(user);
+            return mapper.Map<ApplicationUserViewModel>(dbo);
         }
+        /// <summary>
+        /// Get User profile
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public async Task<T> GetUserProfile<T>(ClaimsPrincipal user)
+        {
+            var dbo = await db.Users.Include(y => y.Address)
+                .FirstOrDefaultAsync(x => x.Id == userManager.GetUserId(user));
+            return mapper.Map<T>(dbo);
+        }
+        /// <summary>
+        /// Update Application User
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public async Task<ApplicationUserViewModel> UpdateUserProfile(ApplicationUserUpdateBinding model)
+        {
+            var dbo = await db.Users.Include(y => y.Address)
+                .FirstOrDefaultAsync(x => x.Id == model.Id);
+            mapper.Map(model, dbo);
+            await db.SaveChangesAsync();
+            return mapper.Map<ApplicationUserViewModel>(dbo);
+
+        }
+
     }
 }

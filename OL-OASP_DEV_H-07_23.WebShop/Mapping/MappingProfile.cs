@@ -3,6 +3,7 @@ using OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.Common;
 using OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.OrderModels;
 using OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.ProductModels;
 using OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.UserModel;
+using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.AccountModels;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.Common;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.OrderModels;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.ProductModels;
@@ -30,6 +31,8 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Mapping
             CreateMap<Address, AddressUpdateBinding>();
             CreateMap<Address, AddressBinding>();
             CreateMap<ApplicationUser, ApplicationUserViewModel>();
+            CreateMap<ApplicationUser, ApplicationUserUpdateBinding>();
+            CreateMap<ApplicationUserUpdateBinding, ApplicationUser>();
             CreateMap<AddressBinding, Address>();
             CreateMap<AddressUpdateBinding, Address>();
             CreateMap<OrderUpdateBinding, Order>();
