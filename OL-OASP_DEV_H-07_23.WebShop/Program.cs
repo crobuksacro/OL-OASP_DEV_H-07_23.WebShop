@@ -29,7 +29,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop
             builder.Services.AddScoped<IAccountService, AccountService>();
             builder.Services.AddScoped<ICommonService, CommonService>();
             builder.Services.AddSingleton<IHostedService, QueueProcessor>();
-
+            builder.Services.AddScoped<IAdminService, AdminService>();
 
             builder.Services.AddAutoMapper(typeof(MappingProfile));
 

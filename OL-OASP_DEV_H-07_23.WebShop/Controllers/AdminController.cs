@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OL_OASP_DEV_H_07_23.WebShop.Services.Interfaces;
+using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.CompanyModels;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.ProductModels;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Dto;
 
@@ -12,12 +13,25 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Controllers
     {
         private readonly IProductService productService;
         private readonly IBuyerService buyerService;
+        private readonly IAdminService adminService;
 
-
-        public AdminController(IProductService productService, IBuyerService buyerService)
+        public AdminController(IProductService productService, IBuyerService buyerService, IAdminService adminService)
         {
             this.productService = productService;
             this.buyerService = buyerService;
+            this.adminService = adminService;
+        }
+
+        public async Task<IActionResult> Company()
+        {
+            var company = await adminService.GetCompany<CompanyUpdateBinding>();
+            return View(company);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Company(CompanyUpdateBinding model)
+        {
+            var company = await adminService.UpdateCompany(model);
+            return RedirectToAction(nameof(Company));
         }
 
         public async Task<IActionResult> Orders()
@@ -35,7 +49,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Controllers
         public async Task<IActionResult> CancelOrder(long id)
         {
             var orders = await buyerService.CancelOrder(id);
-            return RedirectToAction("Orders");
+            return RedirectToAction(nameof(Orders));
         }
 
 
@@ -55,7 +69,7 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Controllers
         public async Task<IActionResult> Create(ProductCategoryBinding model)
         {
             await productService.AddProductCategory(model);
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
 
         public async Task<IActionResult> Edit(long id)
@@ -68,13 +82,13 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Controllers
         public async Task<IActionResult> Edit(ProductCategoryUpdateBinding model)
         {
             await productService.UpdateProductCategory(model);
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
 
         public async Task<IActionResult> Delete(long id)
         {
             await productService.DeleteProductCategory(id);
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
 
         public async Task<IActionResult> Details(long id)
@@ -99,13 +113,13 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Controllers
 
             await productService.AddProductItem(model);
 
-            return RedirectToAction("Details", new { id = model.ProductCategoryId });
+            return RedirectToAction(nameof(Details), new { id = model.ProductCategoryId });
         }
 
         public async Task<IActionResult> DeleteProductItem(long id)
         {
-           var response =  await productService.DeleteProductItem(id);
-            return RedirectToAction("Details", new { id = response.ProductCategoryId });
+            var response = await productService.DeleteProductItem(id);
+            return RedirectToAction(nameof(Details), new { id = response.ProductCategoryId });
         }
     }
 }

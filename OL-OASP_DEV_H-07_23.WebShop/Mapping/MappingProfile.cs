@@ -6,6 +6,7 @@ using OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.ProductModels;
 using OL_OASP_DEV_H_07_23.WebShop.Models.Dbo.UserModel;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.AccountModels;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.Common;
+using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.CompanyModels;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.OrderModels;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.Binding.ProductModels;
 using OL_OASP_DEV_H_07_23.WebShop.Shared.Models.ViewModel.Common;
@@ -47,6 +48,9 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Mapping
             CreateMap<BuyerFeedback, BuyerFeedbackViewModel>();
 
             CreateMap<Company, CompanyViewModel>();
+            CreateMap<Company, CompanyUpdateBinding>();
+            CreateMap<CompanyUpdateBinding, Company>();
+
         }
     }
 }
