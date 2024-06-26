@@ -75,6 +75,16 @@ namespace OL_OASP_DEV_H_07_23.WebShop.Services.Implementations
 
         }
 
-
+        /// <summary>
+        /// Update user
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public async Task<ApplicationUserViewModel?> GetUserProfile(ClaimsPrincipal user)
+        {
+            var dbo = await db.Users.Include(y => y.Address)
+                .FirstOrDefaultAsync(x => x.Id == userManager.GetUserId(user));
+            return mapper.Map<ApplicationUserViewModel>(user);
+        }
     }
 }
