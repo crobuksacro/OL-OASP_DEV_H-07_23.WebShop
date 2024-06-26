@@ -3,3 +3,8 @@
 Generirati overload metode (anonimna) dohvat profila korisnika u AccountServicu
 Generirati metodu koja ce mjenjati podatke korisnika, ko argument zaprima ApplicationUserUpdateBinding i azurira ga u bazi
 Napravtiti view/formu za pregled i uredjivanje podataka korisnika
+
+Zadatak 2
+
+Napraviti Metodu koja ažurira podatke o tvrtci, i pristup ima samo Admin
+Napraviti view/formu za pregled i uredjivanje podataka tvrtke (samo za admina)
